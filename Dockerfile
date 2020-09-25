@@ -14,9 +14,5 @@ RUN	echo "deb http://nimblestreamer.com/ubuntu bionic/">>/etc/apt/sources.list \
 	&& apt-get update -y
 RUN	apt-get install nimble nimble-srt -y
 
-ARG	WMSPANEL_SERVER_NAME=Enter_Docker_container_friendly_name_for_WMSPANEL
-ARG	WMSPANEL_ACCOUNT=ENTER_YOUR_ACCOUNT
-ARG	WMSPANEL_PASS=ENTER_YOUR_PASSWORD
-
 #EXPOSE 8081 1935 554 4444/udp
 ENTRYPOINT	["/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid"]
