@@ -23,7 +23,7 @@ ENV WMSPANEL_HOST=$WMSPANEL_HOST
 #ARG	WMSPANEL_ACCOUNT=ENTER_YOUR_ACCOUNT
 #ARG	WMSPANEL_PASS=ENTER_YOUR_PASSWORD
 
-RUN	sudo /usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --server-name $WMSPANEL_SERVER_NAME --host $WMSPANEL_HOST
+#RUN	sudo /usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --server-name $WMSPANEL_SERVER_NAME --host $WMSPANEL_HOST
 
 EXPOSE 8081 1935 554 4444/udp
-ENTRYPOINT	["/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid"]
+ENTRYPOINT	["/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid", "/usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --server-name $WMSPANEL_SERVER_NAME --host $WMSPANEL_HOST"]
