@@ -18,8 +18,11 @@ ENV WMSPANEL_SERVER_NAME=$WMSPANEL_SERVER_NAME
 ENV WMSPANEL_ACCOUNT=$WMSPANEL_ACCOUNT
 ENV WMSPANEL_PASS=$WMSPANEL_PASS
 
-RUN echo "/usr/bin/nimble --conf-dir=/etc/nimble --log-dir=/var/log/nimble --pidfile=/var/run/nimble/nimble.pid /usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --server-name $WMSPANEL_SERVER_NAME --host nimble.wmspanel.com \n \$@" > ./run.sh
-RUN chmod +x ./run.sh
+#ARG	WMSPANEL_SERVER_NAME=Enter_Docker_container_friendly_name_for_WMSPANEL
+#ARG	WMSPANEL_ACCOUNT=ENTER_YOUR_ACCOUNT
+#ARG	WMSPANEL_PASS=ENTER_YOUR_PASSWORD
+
+RUN	sudo /usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --server-name $WMSPANEL_SERVER_NAME --host nimble.wmspanel.com
 
 EXPOSE 8081 1935 554 4444/udp
-ENTRYPOINT [ "/bin/bash", "./run.sh" ]
+ENTRYPOINT	["/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid"]
