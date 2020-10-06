@@ -22,4 +22,4 @@ RUN echo "/usr/bin/nimble_regutil -u $WMSPANEL_ACCOUNT -p $WMSPANEL_PASS --serve
 RUN chmod +x ./run.sh
 
 EXPOSE 8081 1935 554 4444/udp
-ENTRYPOINT [ "/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid", "/run.sh" ]
+ENTRYPOINT [ "/usr/bin/nimble", "--conf-dir=/etc/nimble", "--log-dir=/var/log/nimble","--pidfile=/var/run/nimble/nimble.pid", "./run.sh" ]
